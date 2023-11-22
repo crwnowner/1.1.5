@@ -1,7 +1,8 @@
 package jm.task.core.jdbc.util;
 
 import jm.task.core.jdbc.model.User;
-import org.hibernate.Session;
+import java.util.Properties;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -11,7 +12,6 @@ import org.hibernate.service.ServiceRegistry;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
-import java.util.Properties;
 
 
 public class Util {
@@ -19,7 +19,7 @@ public class Util {
     private static SessionFactory sessionFactory;
 
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost/mydbtest";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/mydbtest";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "root";
 
@@ -32,7 +32,7 @@ public class Util {
             settings.put(Environment.URL, DB_URL);
             settings.put(Environment.USER, DB_USERNAME);
             settings.put(Environment.PASS, DB_PASSWORD);
-            settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+            settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
             settings.put(Environment.SHOW_SQL, "true");
             settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
             settings.put(Environment.HBM2DDL_AUTO, "");
