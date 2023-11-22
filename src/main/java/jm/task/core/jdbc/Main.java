@@ -1,21 +1,24 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
+import jm.task.core.jdbc.util.Util;
 
 import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        UserServiceImpl userServiceImpl = new UserServiceImpl();
-        userServiceImpl.saveUser("Игорь", "Игорев", (byte) 23);
-        userServiceImpl.saveUser("Максим", "Максимов", (byte) 24);
-        userServiceImpl.saveUser("Олег", "Олегов", (byte) 25);
-        userServiceImpl.saveUser("Ибрагим", "Ибрагимов", (byte) 26);
-        for (User user : userServiceImpl.getAllUsers()) {
+        UserService userService = new UserServiceImpl();
+        userService.saveUser("Игорь", "Игорев", (byte) 23);
+        userService.saveUser("Максим", "Максимов", (byte) 24);
+        userService.saveUser("Олег", "Олегов", (byte) 25);
+        userService.saveUser("Ибрагим", "Ибрагимов", (byte) 26);
+        for (User user : userService.getAllUsers()) {
             System.out.println(user.toString());
         }
-        userServiceImpl.cleanUsersTable();
-        userServiceImpl.dropUsersTable();
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
+        Util.closeConnection();
     }
 }
